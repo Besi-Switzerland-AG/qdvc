@@ -1,21 +1,32 @@
-====
-qdvc
-====
+===================================
+qdvc - Queried Data Version Control
+===================================
 
 
-Add a short description here!
+**Queried Data Version Control** or **QDVC** provides a level of abstraction on `DVC <https://github.com/iterative/dvc>` 
+to offer versions control on data that has been queried and how it was queried.
+
+It offers all the benefits of DVC, with:
+
+* storage and versionning of metadata
+* versionning of querrying mechanism
+* versionning of resulted data from query
 
 
-Description
-===========
-
-A longer description of your project goes here...
+Getting Started
+===============
 
 
-.. _pyscaffold-notes:
-
-Note
-====
-
-This project has been set up using PyScaffold 4.0.2. For details and usage
-information on PyScaffold see https://pyscaffold.org/.
++-----------------------+------------------------------------------------------------+
+| Task                  | Terminal                                                   |
++-----------------------+------------------------------------------------------------+
+| Add data to pool      | | ``$qdvc add images/``                                    |
+|                       | | ``$qdvc commit -m 'new images from customer X' -t v2.0`` |
++-----------------------+------------------------------------------------------------+
+| Create new Query      | | ``$qdvc create DayTimeData``                             |
+|                       | | ``$vim filter.py``                                       |
+|                       | | ``$qdvc commit``                                         |
+|                       | | ``$qdvc push```                                          |
++-----------------------+------------------------------------------------------------+
+| Checkout Queried Data | ``$dqvc checkout DayTimeData v2.0``                        |
++-----------------------+------------------------------------------------------------+
