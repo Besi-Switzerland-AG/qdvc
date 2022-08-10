@@ -1,4 +1,5 @@
 import logging
+import sys
 
 logger = logging.getLogger("dvc")
 
@@ -100,7 +101,8 @@ def main(argv=None):  # noqa: C901
         ret = 254
     except Exception as exc:  # noqa, pylint: disable=broad-except
         # pylint: disable=no-member
-        ret = _log_exceptions(exc) or 255
+        ret = logger.exception(exc) or 255
+        raise exc
 
     try:
         from dvc import analytics
