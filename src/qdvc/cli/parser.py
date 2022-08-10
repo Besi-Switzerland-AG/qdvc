@@ -31,7 +31,7 @@ def _find_parser(parser, cmd_cls):
             _find_parser(subparser, cmd_cls)
 
 
-class DvcParser(argparse.ArgumentParser):
+class QdvcParser(argparse.ArgumentParser):
     """Custom parser class for dvc CLI."""
 
     def error(self, message, cmd_cls=None):  # pylint: disable=arguments-differ
@@ -40,7 +40,7 @@ class DvcParser(argparse.ArgumentParser):
 
     def parse_args(self, args=None, namespace=None):
         # NOTE: overriding to provide a more granular help message.
-        # E.g. `dvc plots diff --bad-flag` would result in a `dvc plots diff`
+        # E.g. `qdvc plots diff --bad-flag` would result in a `dvc plots diff`
         # help message instead of generic `dvc` usage.
         args, argv = self.parse_known_args(args, namespace)
         if argv:
@@ -54,7 +54,7 @@ class VersionAction(argparse.Action):  # pragma: no cover
     """Shows DVC version and exits."""
 
     def __call__(self, parser, namespace, values, option_string=None):
-        from dvc import __version__
+        from qdvc import __version__
 
         print(__version__)
         sys.exit(0)
@@ -85,9 +85,9 @@ def get_main_parser():
     parent_parser = get_parent_parser()
 
     # Main parser
-    desc = "Data Version Control"
-    parser = DvcParser(
-        prog="dvc",
+    desc = "Queried Data Version Control"
+    parser = QdvcParser(
+        prog="qdvc",
         description=desc,
         parents=[parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
@@ -129,7 +129,7 @@ def get_main_parser():
         title="Available Commands",
         metavar="COMMAND",
         dest="cmd",
-        help="Use `dvc COMMAND --help` for command-specific help.",
+        help="Use `qdvc COMMAND --help` for command-specific help.",
     )
 
     from .utils import fix_subparsers

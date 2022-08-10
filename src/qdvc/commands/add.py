@@ -10,7 +10,6 @@ logger = logging.getLogger(__name__)
 
 class CmdAdd(CmdBase):
     def run(self):
-
         try:
             self.repo.add(
                 self.args.targets,
@@ -33,7 +32,7 @@ class CmdAdd(CmdBase):
 
 
 def add_parser(subparsers, parent_parser):
-    ADD_HELP = "Track data files or directories with DVC."
+    ADD_HELP = "Track new data files or directories with QDVC. Will create a new revision on the HEAD."
 
     parser = subparsers.add_parser(
         "add",
