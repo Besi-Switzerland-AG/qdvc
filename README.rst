@@ -7,10 +7,8 @@ qdvc - Queried Data Version Control
 to offer versions control on data that has been queried and how it was queried.
 
 It offers all the benefits of DVC, with:
-
-* storage and versionning of metadata
 * versionning of querrying mechanism
-* versionning of resulted data from query
+* versionning of data filtered from query
 
 
 Getting Started
@@ -21,12 +19,11 @@ Getting Started
 | Task                  | Terminal                                                   |
 +-----------------------+------------------------------------------------------------+
 | Add data to pool      | | ``$qdvc add images/``                                    |
-|                       | | ``$qdvc commit -m 'new images from customer X' -t v2.0`` |
+|                       | | ``$git commit -m 'new images from customer X' -t v2.0``  |
 +-----------------------+------------------------------------------------------------+
-| Create new Query      | | ``$qdvc create DayTimeData``                             |
+| Create new Query      | | ``$qdvc query DayTimeData``                              |
 |                       | | ``$vim filter.py``                                       |
 |                       | | ``$qdvc commit``                                         |
-|                       | | ``$qdvc push```                                          |
 +-----------------------+------------------------------------------------------------+
-| Checkout Queried Data | ``$dqvc checkout DayTimeData v2.0``                        |
+| Checkout Queried Data | ``$qdvc checkout DayTimeData v2.0``                        |
 +-----------------------+------------------------------------------------------------+
