@@ -32,7 +32,10 @@ class CmdAdd(CmdBase):
 
 
 def add_parser(subparsers, parent_parser):
-    ADD_HELP = "Track new data files or directories with QDVC. Will create a new revision on the HEAD."
+    ADD_HELP = (
+        "Track new data files or directories with QDVC. "
+        "Will create a new revision on the HEAD."
+    )
 
     parser = subparsers.add_parser(
         "add",

@@ -9,6 +9,7 @@ class Repo:
     QDVC_DATA_DIR = ".data"
 
     from qdvc.repo.add import add  # type: ignore[misc]
+    from qdvc.repo.query import query  # type: ignore[misc]
 
     def __init__(
         self,

@@ -6,13 +6,14 @@ import sys
 
 from . import QdvcParserError
 
-from qdvc.commands import add, init
+from qdvc.commands import add, init, query
 
 logger = logging.getLogger(__name__)
 
 COMMANDS = [
     init,
     add,
+    query,
 ]
 
 

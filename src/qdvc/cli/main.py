@@ -1,7 +1,7 @@
 import logging
 import sys
 
-logger = logging.getLogger("dvc")
+logger = logging.getLogger("qdvc")
 
 
 class DvcParserError(Exception):
