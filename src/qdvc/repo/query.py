@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from qdvc.repo import Repo
 
 FILTER_FILE_NAME = "filter.py"
+QUERY_BRANCH_PREFIX = "query/"
 
 
 def query(
@@ -20,7 +21,7 @@ def query(
 
     # Branch from master
     try:
-        new_branch = repo.git_repo.create_head(name)
+        new_branch = repo.git_repo.create_head(QUERY_BRANCH_PREFIX + name)
     except BadName:
         raise Exception(
             "Please create a first commit on master branch, "

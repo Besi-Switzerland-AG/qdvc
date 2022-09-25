@@ -6,7 +6,7 @@ import sys
 
 from . import QdvcParserError
 
-from qdvc.commands import add, init, query
+from qdvc.commands import add, init, query, commit
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +14,7 @@ COMMANDS = [
     init,
     add,
     query,
+    commit,
 ]
 
 
