@@ -67,15 +67,15 @@ To create the branch QDVC iterates through files on `.data/` and applies the fil
        checkout main
        commit tag: "data/v1"
        checkout query/daytime
-       merge main tag: "query/daytime/v1"
+       merge main tag: "data/daytime/v1"
        checkout query/other_query
-       merge main tag: "query/other_query/v1"
+       merge main tag: "data/other_query/v1"
        checkout main
        commit tag: "data/v2"
        checkout query/daytime
-       merge main tag: "query/daytime/v2"
+       merge main tag: "data/daytime/v2"
        checkout main
        commit tag: "data/v3"
        checkout query/other_query
-       merge main tag: "query/other_query/v3"
+       merge main tag: "data/other_query/v3"
 ```
