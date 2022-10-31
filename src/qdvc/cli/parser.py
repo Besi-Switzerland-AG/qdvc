@@ -6,16 +6,11 @@ import sys
 
 from . import QdvcParserError
 
-from qdvc.commands import add, init, query, commit
+from qdvc.commands import add, init, query, commit, checkout
 
 logger = logging.getLogger(__name__)
 
-COMMANDS = [
-    init,
-    add,
-    query,
-    commit,
-]
+COMMANDS = [init, add, query, commit, checkout]
 
 
 def _find_parser(parser, cmd_cls):
@@ -73,12 +68,8 @@ def get_parent_parser():
     parent_parser = argparse.ArgumentParser(add_help=False)
     add_debugging_flags(parent_parser)
     log_level_group = parent_parser.add_mutually_exclusive_group()
-    log_level_group.add_argument(
-        "-q", "--quiet", action="count", default=0, help="Be quiet."
-    )
-    log_level_group.add_argument(
-        "-v", "--verbose", action="count", default=0, help="Be verbose."
-    )
+    log_level_group.add_argument("-q", "--quiet", action="count", default=0, help="Be quiet.")
+    log_level_group.add_argument("-v", "--verbose", action="count", default=0, help="Be verbose.")
 
     return parent_parser
 

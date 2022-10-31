@@ -75,26 +75,19 @@ def add_parser(subparsers, parent_parser):
         "--no-scm",
         action="store_true",
         default=False,
-        help="Initiate DVC in directory that is "
-        "not tracked by any SCM tool (e.g. Git).",
+        help="Initiate DVC in directory that is " "not tracked by any SCM tool (e.g. Git).",
     )
     init_parser.add_argument(
         "-f",
         "--force",
         action="store_true",
         default=False,
-        help=(
-            "Overwrite existing '.dvc/' directory. "
-            "This operation removes local cache."
-        ),
+        help=("Overwrite existing '.dvc/' directory. " "This operation removes local cache."),
     )
     init_parser.add_argument(
         "--subdir",
         action="store_true",
         default=False,
-        help=(
-            "Necessary for running this command inside a subdirectory of a "
-            "parent SCM repository."
-        ),
+        help=("Necessary for running this command inside a subdirectory of a " "parent SCM repository."),
     )
     init_parser.set_defaults(func=CmdInit)

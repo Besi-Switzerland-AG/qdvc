@@ -3,7 +3,6 @@ import logging
 
 from qdvc.cli import completion
 from qdvc.cli.command import CmdBase
-from qdvc.cli.utils import append_doc_link
 
 logger = logging.getLogger(__name__)
 
@@ -32,15 +31,12 @@ class CmdAdd(CmdBase):
 
 
 def add_parser(subparsers, parent_parser):
-    ADD_HELP = (
-        "Track new data files or directories with QDVC. "
-        "Will create a new revision on the HEAD."
-    )
+    ADD_HELP = "Track new data files or directories with QDVC. " "Will create a new revision on the HEAD."
 
     parser = subparsers.add_parser(
         "add",
         parents=[parent_parser],
-        description=append_doc_link(ADD_HELP, "add"),
+        description=ADD_HELP,
         help=ADD_HELP,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
@@ -108,12 +104,7 @@ def add_parser(subparsers, parent_parser):
         "--desc",
         type=str,
         metavar="<text>",
-        help=(
-            "User description of the data (optional). "
-            "This doesn't affect any DVC operations."
-        ),
+        help=("User description of the data (optional). " "This doesn't affect any DVC operations."),
     )
-    parser.add_argument(
-        "targets", nargs="+", help="Input files/directories to add."
-    ).complete = completion.FILE
+    parser.add_argument("targets", nargs="+", help="Input files/directories to add.").complete = completion.FILE
     parser.set_defaults(func=CmdAdd)

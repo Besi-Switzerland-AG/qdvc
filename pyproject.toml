@@ -9,4 +9,4 @@ version_scheme = "no-guess-dev"
 
 [tool.black]
 # See configuration details in https://github.com/pypa/setuptools_scm
-line-length = 88
+line-length = 120

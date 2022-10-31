@@ -8,9 +8,6 @@ import shutil
 if TYPE_CHECKING:
     from qdvc.repo import Repo
 
-FILTER_FILE_NAME = "filter.py"
-QUERY_BRANCH_PREFIX = "query/"
-
 
 def query(
     repo: "Repo",
@@ -21,16 +18,15 @@ def query(
 
     # Branch from master
     try:
-        new_branch = repo.git_repo.create_head(QUERY_BRANCH_PREFIX + name)
+        new_branch = repo.git_repo.create_head(repo.QUERY_SEPARATOR.join([repo.QUERY_BRANCH_PREFIX, name, repo.QUERY_INIT]))
     except BadName:
         raise Exception(
-            "Please create a first commit on master branch, "
-            "e.g. by commiting config files or adding new data."
+            "Please create a first commit on master branch, " "e.g. by commiting config files or adding new data."
         )
     new_branch.checkout()
 
     # Create a filter.py file
-    filter_path = os.path.join(repo.qdvc_dir, FILTER_FILE_NAME)
+    filter_path = os.path.join(repo.qdvc_dir, repo.FILTER_FILE_NAME)
     if os.path.exists(filter_path):
         raise Exception(f"{filter_path} already exists. Please remove it from Master.")
 

@@ -2,7 +2,6 @@ import argparse
 import logging
 from qdvc.cli.command import CmdBase
 
-from qdvc.cli.utils import append_doc_link
 
 logger = logging.getLogger(__name__)
 
@@ -26,11 +25,15 @@ def add_parser(subparsers, parent_parser):
     parser = subparsers.add_parser(
         "commit",
         parents=[parent_parser],
-        description=append_doc_link(ADD_HELP, "commit"),
+        description=ADD_HELP,
         help=ADD_HELP,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
-        "-m", "--message", nargs='?', dest="message", help="message to associate with the query commit",
+        "-m",
+        "--message",
+        nargs="?",
+        dest="message",
+        help="message to associate with the query commit",
     )
     parser.set_defaults(func=CmdCommit)

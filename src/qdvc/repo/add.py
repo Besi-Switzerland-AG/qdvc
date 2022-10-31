@@ -18,18 +18,14 @@ def add(
     **kwargs: Any,
 ) -> List[str]:
     checkout_master(repo.git_repo)
-    staged = repo.dvc_repo.add(
-        targets, recursive, no_commit, fname, to_remote, **kwargs
-    )
+    staged = repo.dvc_repo.add(targets, recursive, no_commit, fname, to_remote, **kwargs)
 
     new_paths = []
     for staged_file in staged:
         staged_file: Stage
         if staged_file.path[: len(repo.root_dir)] != repo.root_dir:
             raise Exception("Cannot add a file outside repository, please try again.")
-        new_path = os.path.join(
-            repo.data_qdvc_dir, staged_file.path[len(repo.root_dir) + 1 :]
-        )
+        new_path = os.path.join(repo.data_qdvc_dir, staged_file.path[len(repo.root_dir) + 1 :])
         dir_name = os.path.dirname(new_path)
         os.makedirs(dir_name)
         os.rename(staged_file.path, new_path)

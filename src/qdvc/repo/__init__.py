@@ -3,16 +3,23 @@ from qdvc.config import Config
 from dvc.repo import Repo as DvcRepo
 from git.repo import Repo as GitRepo
 
-from qdvc.repo.query import QUERY_BRANCH_PREFIX
-
 
 class Repo:
     QDVC_DIR = ".qdvc"
     QDVC_DATA_DIR = ".data"
+    git_repo: GitRepo
+    dvc_repo: DvcRepo
+
+    FILTER_MODULE_NAME = "filter"
+    FILTER_FILE_NAME = FILTER_MODULE_NAME + ".py"
+    QUERY_SEPARATOR = "/"
+    QUERY_BRANCH_PREFIX = "query"
+    QUERY_INIT = "init"
 
     from qdvc.repo.add import add  # type: ignore[misc]
     from qdvc.repo.query import query  # type: ignore[misc]
     from qdvc.repo.commit import commit  # type: ignore[misc]
+    from qdvc.repo.checkout import checkout  # type: ignore[misc]
 
     def __init__(
         self,
@@ -56,4 +63,4 @@ class Repo:
         """
         Returns if the current repo is on a query branch, or False if on master or data branch.
         """
-        return self.git_repo.active_branch.name.startswith(QUERY_BRANCH_PREFIX)
+        return self.git_repo.active_branch.name.startswith(self.QUERY_BRANCH_PREFIX)

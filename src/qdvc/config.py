@@ -51,9 +51,7 @@ class Config(dict):
     CONFIG = "config"
     CONFIG_LOCAL = "config.local"
 
-    def __init__(
-        self, qdvc_dir=None, validate=True, config=None
-    ):  # pylint: disable=super-init-not-called
+    def __init__(self, qdvc_dir=None, validate=True, config=None):  # pylint: disable=super-init-not-called
 
         self.qdvc_dir = qdvc_dir
 
@@ -81,10 +79,7 @@ class Config(dict):
 
     @cached_property
     def files(self):
-        files = {
-            level: os.path.join(self.get_dir(level), self.CONFIG)
-            for level in ("system", "global")
-        }
+        files = {level: os.path.join(self.get_dir(level), self.CONFIG) for level in ("system", "global")}
 
         if self.qdvc_dir is not None:
             files["repo"] = os.path.join(self.qdvc_dir, self.CONFIG)
@@ -263,6 +258,4 @@ def merge(into, update):
 
 
 def _lower_keys(data):
-    return {
-        k.lower(): _lower_keys(v) if isinstance(v, dict) else v for k, v in data.items()
-    }
+    return {k.lower(): _lower_keys(v) if isinstance(v, dict) else v for k, v in data.items()}

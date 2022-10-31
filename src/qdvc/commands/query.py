@@ -2,7 +2,6 @@ import argparse
 import logging
 
 from qdvc.cli.command import CmdBase
-from qdvc.cli.utils import append_doc_link
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +25,7 @@ def add_parser(subparsers, parent_parser):
     parser = subparsers.add_parser(
         "query",
         parents=[parent_parser],
-        description=append_doc_link(ADD_HELP, "query"),
+        description=ADD_HELP,
         help=ADD_HELP,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
