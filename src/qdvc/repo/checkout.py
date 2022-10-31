@@ -44,15 +44,10 @@ def checkout(
     new_paths = []
     for root, subdirs, files in os.walk(repo.QDVC_DATA_DIR):
         for f in files:
-            print(f"{root} : {subdirs}, {f}")
             fp = os.path.join(repo.root_dir, root, f)
-            print(fp)
             if query.filter(fp):  # type: ignore
-                print(f"fp {fp}")
                 new_path = fp[len(repo.data_qdvc_dir) + 1 :]
-                print(f"tmp {new_path}")
                 new_path = os.path.join(repo.root_dir, new_path)
-                print(new_path)
                 new_paths.append(new_path)
                 if branch_already_exists:
                     if os.path.exists(new_path):
@@ -69,6 +64,6 @@ def checkout(
     # Add files and Commits branch
     if not branch_already_exists:
         repo.git_repo.index.add(new_paths)
-        repo.git_repo.commit()
+        repo.git_repo.git.commit('-m', "test")
 
     # notifiy that user that if he's happy, he should push the branch
