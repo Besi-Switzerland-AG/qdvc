@@ -1,3 +1,4 @@
+import shutil
 from dvc.repo import Repo as DvcRepo
 from git.repo import Repo as GitRepo
 from qdvc.repo import Repo
@@ -31,6 +32,15 @@ def init(root_dir=os.curdir, no_scm=False, force=False, subdir=False):
     data_dir = _create_dir(root_dir, Repo.QDVC_DATA_DIR, force)
 
     _ = Config.init(qdvc_dir)
+
+    base_gitignore_path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "..",
+        "resources",
+        "gitignore_skeleton",
+    )
+    gitignore_path = os.path.join(qdvc_dir, ".gitignore")
+    shutil.copyfile(base_gitignore_path, gitignore_path)
 
     repo = GitRepo(root_dir)
 

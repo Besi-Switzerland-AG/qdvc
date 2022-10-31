@@ -30,11 +30,11 @@ def query(
     if os.path.exists(filter_path):
         raise Exception(f"{filter_path} already exists. Please remove it from Master.")
 
-    base_fileter_path = os.path.join(
+    base_filter_path = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
         "..",
         "resources",
         "filter_skeletton.py",
     )
-    shutil.copyfile(base_fileter_path, filter_path)
+    shutil.copyfile(base_filter_path, filter_path)
     return name
