@@ -53,8 +53,7 @@ The dataset is determined by 2 dimensions: the ``query``, and the ``version``:
 - the ``version`` indicates the commit hash or tag of the main branch where all the data is commited in a large pool under folder `$GIT_ROOT/.data/`
 - a query is a branch out of the main branch with a single commits that defines the filter.py query mechanism.
 
-The dataset queried by `QUERY_NAME` on version `VERSION` is then a branch of name `query/$QUERY_NAME/$VERSION` that is created automatically by QDVC after one runs `qdvc checkout $QUERY_NAME $VERSION`.
-To create the branch QDVC iterates through files on `.data/` and applies the filter defined by the user in `filter.py`. It then moves the files outside of the pool to their original locations, and commits them to the branch.
+The dataset queried by `QUERY_NAME` on version `VERSION` is a merge commit on query branch from main commit `data/$VERSION`. The merge commit is tagged with `query/$QUERY_NAME/$VERSION`. This commit is created automatically when the user runs `qdvc checkout $QUERY_NAME $VERSION`. To accomplish this, QDVC iterates through files on the pool `.data/` and applies the filter defined by the user in `filter.py`. It moves the files outside of the pool to their original locations, and commits them.
 
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showCommitLabel': false}} }%%
@@ -78,4 +77,7 @@ To create the branch QDVC iterates through files on `.data/` and applies the fil
        commit tag: "data/v3"
        checkout query/other_query
        merge main tag: "query/other_query/v3"
+       checkout main
+       commit tag: "data/v4"
+       
 ```
