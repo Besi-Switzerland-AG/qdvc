@@ -1,28 +1,28 @@
-# qdvc - Queried Data Version Control
+# qdvc - Queried Data Version Control 🚀
 
 
-**Queried Data Version Control** or **QDVC** provides a level of abstraction on `DVC https://github.com/iterative/dvc` 
+**Queried Data Version Control** or **QDVC** provides a level of abstraction on [DVC](https://github.com/iterative/dvc)
 to offer versions control on data that has been queried and how it was queried.
 
-It offers all the benefits of DVC, with:
+It offers all the benefits of DVC to version data, but it tracks the data over **2 dimensions**
 
-- versionning of querrying mechanism
-- versionning of data filtered from query
+- the querrying mechanism
+- the base version of the data
 
+✨So you can quickly get your data for a specific customer (query) at a certain point in time (data version)!✨
 
-## Getting Started
+## Getting Started ⚡
 
 | Task                  | Terminal                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------|
-| Add data to pool      | ``$qdvc add images/`` <br/> ``$git commit -m 'new images from customer X' -t v2``   |
-| Create new Query      | ``$qdvc query daytime``<br/>``$vim filter.py``                                      |
-|                       | ``$qdvc commit``                                                                    |
-| Checkout Queried Data | ``$qdvc checkout daytime v2``                                                       |
+| Add data to pool      | ``$ qdvc add images/`` <br/> ``$ git commit -m 'new images from customer X' -t v2`` |
+| Create new Query      | ``$ qdvc query daytime``<br/>``$ vim filter.py``<br/>``$ qdvc commit``              |
+| Checkout Queried Data | ``$ qdvc checkout daytime v2``                                                      |
 
 
 ## The Querying Mechanism
 
-Queries can be based on the filename or n any metadata. For example, you can `add` a TinyDB json file with some metadata for each file.
+Queries can be based on the filename or on any metadata. For example, you can add` a TinyDB json file with some metadata for each file.
 
 The file `filter.py` is used to filter files. It looks like:
 
@@ -46,7 +46,7 @@ class Query:
     return not self.db.search(file.path == filepath).IsNight
 ```
 
-## How it Works
+## How it Works ⚙️
 
 The dataset is determined by 2 dimensions: the ``query``, and the ``version``:
 
