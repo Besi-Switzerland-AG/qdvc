@@ -27,9 +27,10 @@ def add(
             raise Exception("Cannot add a file outside repository, please try again.")
         new_path = os.path.join(repo.data_qdvc_dir, staged_file.path[len(repo.root_dir) + 1 :])
         dir_name = os.path.dirname(new_path)
-        os.makedirs(dir_name)
+        if not os.path.exists(dir_name):
+            os.makedirs(dir_name)
         os.rename(staged_file.path, new_path)
         new_paths.append(new_path)
 
-    repo.git_repo.index.add(new_paths)
+    repo.git_repo.git.add(new_paths)
     return new_paths

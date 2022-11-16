@@ -5,7 +5,7 @@ import importlib.util
 import shutil
 from pathlib import Path
 import sys
-import inspect
+from datetime import datetime
 
 if TYPE_CHECKING:
     from qdvc.repo import Repo
@@ -63,7 +63,7 @@ def checkout(
 
     # Add files and Commits branch
     if not branch_already_exists:
-        repo.git_repo.index.add(new_paths)
-        repo.git_repo.git.commit('-m', "test")
+        repo.git_repo.git.add(new_paths)
+        repo.git_repo.git.commit('-m', f"Queried on {datetime.today().strftime('%Y-%m-%d')}")
 
     # notifiy that user that if he's happy, he should push the branch

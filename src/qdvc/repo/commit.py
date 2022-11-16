@@ -35,7 +35,7 @@ def commit(
 
     # Commit it. Print a message to remind to checkout with master data.
     message = message if message else "Query commit"
-    repo.git_repo.index.commit(message)
+    repo.git_repo.git.commit("-m", message)
 
     logger.info("Successfuly commited query. Remember to push the branch and start using by `qdvc checkout`.")
     return message
